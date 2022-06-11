@@ -1,18 +1,22 @@
-import { Filter, Gain, Reverb, Noise, Destination } from "tone";
+const { Filter, Gain, Reverb, Noise, Destination } = window.Tone;
 
 const FADE_IN_TIME = 1;
 const FADE_OUT_TIME = 2;
 const MIN_FREQUENCY = 100;
 const MAX_FREQUENCY = 20000;
-const INITIAL_FREQUENCY = 5000;
-const INITIAL_VOLUME = 0.9;
 
 const NOISE_TYPES = ["white", "pink", "brown"];
 
-const filter = new Filter(INITIAL_FREQUENCY, "lowpass");
-const gainNode = new Gain(INITIAL_VOLUME);
+const DEFAULT_VALUES = {
+    filter: 4186,
+    volume: 0.5,
+    type: NOISE_TYPES[1],
+};
+
+const filter = new Filter(DEFAULT_VALUES.filter, "lowpass");
+const gainNode = new Gain(DEFAULT_VALUES.volume);
 const reverb = new Reverb();
-const noise = new Noise(NOISE_TYPES[0]);
+const noise = new Noise(DEFAULT_VALUES.type);
 
 noise.chain(gainNode, filter, reverb, Destination);
 
@@ -67,11 +71,6 @@ const handlers = {
 };
 
 function setInitialValues() {
-    const defaultValues = {
-        filter: INITIAL_FREQUENCY,
-        volume: INITIAL_VOLUME,
-        type: NOISE_TYPES[0],
-    };
     let values = {};
     try {
         values = JSON.parse(localStorage.getItem("settings")) || {};
@@ -79,7 +78,7 @@ function setInitialValues() {
         console.error("Error retrieving settings form localStorage", error);
     }
     values = {
-        ...defaultValues,
+        ...DEFAULT_VALUES,
         ...values,
     };
 
