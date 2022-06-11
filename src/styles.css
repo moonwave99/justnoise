@@ -1,0 +1,81 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --playback-toggle-size: 35vmin;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease-in-out;
+}
+
+body.color-white {
+  background-color: white;
+}
+
+body.color-pink {
+  background-color: pink;
+}
+
+body.color-brown {
+  background-color: #6f452f;
+}
+
+main {
+  flex: 1;
+  padding-top: 5vmin;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.8rem;
+}
+
+form {
+  text-align: center;
+}
+
+.field {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.field label {
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.start {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  appearance: none;
+  border: none;
+  border-radius: 50%;
+  font-size: calc(var(--playback-toggle-size) / 7);
+  height: var(--playback-toggle-size);
+  width: var(--playback-toggle-size);
+  margin: 3rem;
+}
+
+footer {
+  font-size: 0.9rem;
+  line-height: 5rem;
+  text-align: center;
+}
+
+footer a {
+  color: black;
+}
